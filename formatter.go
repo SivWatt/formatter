@@ -15,19 +15,17 @@ import (
 
 const (
 	defaultTimestampFormat = time.RFC3339
-	FieldKeyFile           = "file"
-	FieldKeyFunc           = "func"
 )
 
-var _ log.Formatter = &myFormatter{}
+var _ log.Formatter = &AppFormatter{}
 
-type myFormatter struct {
+type AppFormatter struct {
 	DisableTimestamp bool
 	DisablePID       bool
 }
 
 // Format implements interface
-func (f *myFormatter) Format(entry *log.Entry) ([]byte, error) {
+func (f *AppFormatter) Format(entry *log.Entry) ([]byte, error) {
 	// initial buffer if necessary
 	var b *bytes.Buffer
 	if entry.Buffer != nil {
@@ -87,7 +85,7 @@ func (f *myFormatter) Format(entry *log.Entry) ([]byte, error) {
 	return b.Bytes(), nil
 }
 
-func (f *myFormatter) appendWithoutKey(b *bytes.Buffer, value interface{}) {
+func (f *AppFormatter) appendWithoutKey(b *bytes.Buffer, value interface{}) {
 	if b.Len() > 0 {
 		b.WriteByte(' ')
 	}
@@ -95,7 +93,7 @@ func (f *myFormatter) appendWithoutKey(b *bytes.Buffer, value interface{}) {
 	f.appendValue(b, value)
 }
 
-func (f *myFormatter) appendFieldLevel(b *bytes.Buffer, value interface{}) {
+func (f *AppFormatter) appendFieldLevel(b *bytes.Buffer, value interface{}) {
 	if b.Len() > 0 {
 		b.WriteByte(' ')
 	}
@@ -103,7 +101,7 @@ func (f *myFormatter) appendFieldLevel(b *bytes.Buffer, value interface{}) {
 	f.appendBracketsValue(b, fmt.Sprintf("%s", strings.ToUpper(value.(string))[:4]))
 }
 
-func (f *myFormatter) appendProcessID(b *bytes.Buffer, value int) {
+func (f *AppFormatter) appendProcessID(b *bytes.Buffer, value int) {
 	if b.Len() > 0 {
 		b.WriteByte(' ')
 	}
@@ -111,7 +109,7 @@ func (f *myFormatter) appendProcessID(b *bytes.Buffer, value int) {
 	f.appendBracketsValue(b, fmt.Sprintf("%.4x", value))
 }
 
-func (f *myFormatter) appendKeyValue(b *bytes.Buffer, key string, value interface{}) {
+func (f *AppFormatter) appendKeyValue(b *bytes.Buffer, key string, value interface{}) {
 	if b.Len() > 0 {
 		b.WriteByte(' ')
 	}
@@ -123,7 +121,7 @@ func (f *myFormatter) appendKeyValue(b *bytes.Buffer, key string, value interfac
 	b.WriteByte(']')
 }
 
-func (f *myFormatter) appendBracketsValue(b *bytes.Buffer, value interface{}) {
+func (f *AppFormatter) appendBracketsValue(b *bytes.Buffer, value interface{}) {
 	if b.Len() > 0 {
 		b.WriteByte(' ')
 	}
@@ -133,7 +131,7 @@ func (f *myFormatter) appendBracketsValue(b *bytes.Buffer, value interface{}) {
 	b.WriteByte(']')
 }
 
-func (f *myFormatter) appendValue(b *bytes.Buffer, value interface{}) {
+func (f *AppFormatter) appendValue(b *bytes.Buffer, value interface{}) {
 	stringVal, ok := value.(string)
 	if !ok {
 		stringVal = fmt.Sprint(value)
