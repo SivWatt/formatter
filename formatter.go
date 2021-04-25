@@ -94,18 +94,10 @@ func (f *AppFormatter) appendWithoutKey(b *bytes.Buffer, value interface{}) {
 }
 
 func (f *AppFormatter) appendFieldLevel(b *bytes.Buffer, value interface{}) {
-	if b.Len() > 0 {
-		b.WriteByte(' ')
-	}
-
 	f.appendBracketsValue(b, fmt.Sprintf("%s", strings.ToUpper(value.(string))[:4]))
 }
 
 func (f *AppFormatter) appendProcessID(b *bytes.Buffer, value int) {
-	if b.Len() > 0 {
-		b.WriteByte(' ')
-	}
-
 	f.appendBracketsValue(b, fmt.Sprintf("%.4x", value))
 }
 
