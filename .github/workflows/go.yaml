@@ -14,6 +14,8 @@ jobs:
       matrix:
         platform: [ ubuntu-20.04, macos-latest, windows-latest ]
         go-version: [ 1.14.x, 1.16.x ]
+        timezone-unix: [ UTC, Asia/Taiwan, America/New_York ]
+        timezone-windows: [ GMT, Taipei Standard Time, US Eastern Standard Time ]
     runs-on: ${{ matrix.platform }}
     name: Unit Test
     steps:
@@ -24,6 +26,12 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
+
+      - name: Change Timezone Unix
+        uses: actions/set-timezone-action@1.1
+        with: 
+          timezoneLinux: ${{ matrix.timezone-unix }}
+          timezoneWindows: ${{ matrix.timezone-windows }}
 
       - name: Run Go test
         run: go test -v -cover ./...

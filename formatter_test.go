@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	timeRegexp      = `\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)`
+	timeRegexp      = `\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([\+\-]\d{2}:\d{2}|Z)`
 	levelRegexp     = `\[(PANI|FATA|ERRO|WARN|INFO|DEBU|TRAC)\]`
 	processIDRegexp = `\[[\d\w]+\]`
 	funcRegexp      = `\[[\d\w.\-_()]+\]`
