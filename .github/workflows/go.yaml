@@ -12,7 +12,7 @@ jobs:
   test:
     strategy:
       matrix:
-        platform: [ ubuntu-20.04, macos-latest, windows-latest ]
+        platform: [ ubuntu-latest, macos-latest, windows-latest ]
         go-version: [ 1.14.x, 1.16.x ]
         timezone-unix: [ UTC, Asia/Taiwan, America/New_York ]
         timezone-windows: [ GMT, Taipei Standard Time, US Eastern Standard Time ]
@@ -28,13 +28,13 @@ jobs:
           go-version: ${{ matrix.go-version }}
 
       - name: Change Timezone Unix
-        uses: actions/set-timezone-action@v1.1
+        uses: szenius/set-timezone@v1.0
         with: 
           timezoneLinux: ${{ matrix.timezone-unix }}
-        if: ${{ matrix.plarform == 'ubuntu-20.04' || matrix.platform == 'macos-latest' }}
+        if: ${{ matrix.plarform == 'ubuntu-latest' || matrix.platform == 'macos-latest' }}
 
-      - name: Change Timezone Unix
-        uses: actions/set-timezone-action@v1.1
+      - name: Change Timezone Windows
+        uses: szenius/set-timezone@v1.0
         with: 
           timezoneWindows: ${{ matrix.timezone-windows }}
         if: ${{ matrix.plarform == 'windows-latest' }}
