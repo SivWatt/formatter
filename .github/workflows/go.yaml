@@ -28,7 +28,7 @@ jobs:
           go-version: ${{ matrix.go-version }}
 
       - name: Change Timezone Unix
-        uses: actions/set-timezone-action@1.1
+        uses: actions/set-timezone-action@v1.1
         with: 
           timezoneLinux: ${{ matrix.timezone-unix }}
           timezoneWindows: ${{ matrix.timezone-windows }}
