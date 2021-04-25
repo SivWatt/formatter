@@ -1,4 +1,5 @@
 # Application Formatter
+![example workflow](https://github.com/SivWatt/formatter/actions/workflows/go.yaml/badge.svg)
 This is a customized formatter which implements `Fommatter` of [logrus](https://github.com/sirupsen/logrus).  
 This formatter mainly focuses on desktop application logging, since we might need __process ID__, __local time stamp__, __function name__, and __lines__.  
 And one of the goals of this formatter is making logs __human-readable__.  
