@@ -27,6 +27,12 @@ func init() {
 	log.SetFormatter(&AppFormatter{})
 }
 
+func TestFormat(t *testing.T) {
+	log.SetReportCaller(true)
+	log.SetLevel(log.TraceLevel)
+	log.Info(msg)
+}
+
 func TestFormat_WithTraceLevelandReportCallerTrue(t *testing.T) {
 	b := &strings.Builder{}
 	log.SetReportCaller(true)
