@@ -1,4 +1,5 @@
 # Application Formatter
+![Test Status](https://github.com/SivWatt/formatter/actions/workflows/go.yaml/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/SivWatt/formatter)](https://goreportcard.com/report/github.com/SivWatt/formatter)  
 This is a customized formatter which implements `Fommatter` of [logrus](https://github.com/sirupsen/logrus).  
 This formatter mainly focuses on desktop application logging, since we might need __process ID__, __local time stamp__, __function name__, and __lines__.  
 And one of the goals of this formatter is making logs __human-readable__.  
