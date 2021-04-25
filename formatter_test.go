@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	timeRegexp      = `\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}`
+	timeRegexp      = `\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([\+\-]\d{2}:\d{2}|Z)`
 	levelRegexp     = `\[(PANI|FATA|ERRO|WARN|INFO|DEBU|TRAC)\]`
 	processIDRegexp = `\[[\d\w]+\]`
 	funcRegexp      = `\[[\d\w.\-_()]+\]`
@@ -25,6 +25,12 @@ var (
 
 func init() {
 	log.SetFormatter(&AppFormatter{})
+}
+
+func TestFormat(t *testing.T) {
+	log.SetReportCaller(true)
+	log.SetLevel(log.TraceLevel)
+	log.Info(msg)
 }
 
 func TestFormat_WithTraceLevelandReportCallerTrue(t *testing.T) {
