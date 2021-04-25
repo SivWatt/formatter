@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         go-version: [ 1.16.x ]
-        timezone-unix: [ UTC, Asia/Taiwan, America/New_York ]
+        timezone-unix: [ UTC, Asia/Taipei, America/New_York ]
     runs-on: ubuntu-latest
-    name: Unit Test
+    name: Unit Test Ubuntu
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -37,9 +37,9 @@ jobs:
     strategy:
       matrix:
         go-version: [ 1.16.x ]
-        timezone-unix: [ UTC, Asia/Taiwan, America/New_York ]
+        timezone-unix: [ UTC, Asia/Taipei, America/New_York ]
     runs-on: macos-latest
-    name: Unit Test
+    name: Unit Test macOS
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -63,7 +63,7 @@ jobs:
         go-version: [ 1.16.x ]
         timezone-windows: [ GMT, Taipei Standard Time, US Eastern Standard Time ]
     runs-on: windows-latest
-    name: Unit Test
+    name: Unit Test Windows
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
